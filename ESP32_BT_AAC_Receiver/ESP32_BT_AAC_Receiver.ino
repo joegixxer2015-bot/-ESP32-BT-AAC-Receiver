@@ -1,19 +1,9 @@
-#include <driver/i2s.h>
 #include "BluetoothA2DPSink.h"
 
 BluetoothA2DPSink a2dp_sink;
 
 void setup() {
-  i2s_pin_config_t my_pin_config = {
-    .bck_io_num = 4,
-    .ws_io_num = 5,
-    .data_out_num = 6,
-    .data_in_num = I2S_PIN_NO_CHANGE
-  };
-
-  // เปลี่ยนมาใช้ชื่อฟังก์ชันนี้แทนครับ
-  a2dp_sink.set_i2s_pins(my_pin_config);
-  
+  // เริ่มต้นบลูทูธโดยใช้พิน I2S ค่าเริ่มต้นของไลบรารี
   a2dp_sink.start("JOE_DSP");
 }
 
