@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Arduino CLI
+      - name: Install CLI
         run: |
           curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_0.35.3_Linux_64bit.tar.gz | tar -xz
           sudo mv arduino-cli /usr/local/bin/
@@ -17,7 +17,3 @@ jobs:
           arduino-cli core install esp32:esp32
           arduino-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
           arduino-cli compile --fqbn esp32:esp32:esp32 ESP32_BT_AAC_Receiver
-      - uses: actions/upload-artifact@v4
-        with:
-          name: esp32-bt-bin
-          path: /tmp/*/ESP32_BT_AAC_Receiver.ino*.bin
