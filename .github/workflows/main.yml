@@ -9,7 +9,8 @@ jobs:
         run: |
           curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_0.35.3_Linux_64bit.tar.gz | tar -xz
           sudo mv arduino-cli /usr/local/bin/
-          arduino-cli version
+          arduino-cli config init
+          arduino-cli config set library.enable_unsafe_install true
       - name: Build check
         run: |
           arduino-cli core update-index
