@@ -27,4 +27,4 @@ jobs:
 
       - name: Compile Sketch
         run: |
-          arduino-cli compile --fqbn esp32:esp32:esp32dev ESP32_BT_AAC_Receiver
+          arduino-cli compile --fqbn esp32:esp32:esp32 ESP32_BT_AAC_Receiver
