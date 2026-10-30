@@ -5,10 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: arduino/setup-arduino-cli@v1
-        with:
-          version: 0.35.3
-      - run: |
+      - name: Install Arduino CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+          echo "$HOME/bin" >> $GITHUB_PATH
+      - name: Build check
+        run: |
           arduino-cli core update-index
           arduino-cli core install esp32:esp32
           arduino-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
