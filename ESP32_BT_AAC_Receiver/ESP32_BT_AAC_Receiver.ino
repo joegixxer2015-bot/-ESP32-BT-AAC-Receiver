@@ -3,11 +3,16 @@
 BluetoothA2DPSink a2dp_sink;
 
 void setup() {
-  // เริ่มต้นบลูทูธ (รองรับการสตรีมเสียง SBC/AAC อัตโนมัติ)
+  Serial.begin(115200);
+  delay(1000);
+  Serial.println("Starting Bluetooth...");
+  
+  // เริ่มต้นบลูทูธชื่อ JOE_DSP แบบมาตรฐาน
   a2dp_sink.start("JOE_DSP");
+  Serial.println("Bluetooth Started Successfully!");
 }
 
 void loop() {
-  // หน่วงเวลาให้ซีพียูได้พัก ไม่ทำงานหนักเกินไป
+  // หน่วงเวลาให้ Task อื่นๆ ในระบบทำงานได้อย่างราบรื่น
   vTaskDelay(pdMS_TO_TICKS(100));
 }
