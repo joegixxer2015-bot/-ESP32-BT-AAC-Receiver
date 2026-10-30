@@ -11,11 +11,13 @@ jobs:
           sudo mv arduino-cli /usr/local/bin/
           arduino-cli config init
           arduino-cli config set library.enable_unsafe_install true
-      - name: Build check
+      - name: Build
         run: |
           arduino-cli core update-index
           arduino-cli core install esp32:esp32
           arduino-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
-          SKETCH=$(find . -name "*.ino" | head -n 1)
-          echo "Found sketch: $SKETCH"
-          arduino-cli compile --fqbn esp32:esp32:esp32 "$SKETCH"
+          arduino-cli compile --fqbn esp32:esp32:esp32 ESP32_BT_AAC_Receiver
+      - uses: actions/upload-artifact@v4
+        with:
+          name: esp32-bt-bin
+          path: /tmp/*/ESP32_BT_AAC_Receiver.ino*.bin
