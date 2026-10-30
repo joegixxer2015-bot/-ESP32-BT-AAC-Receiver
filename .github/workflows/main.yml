@@ -20,7 +20,9 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          # ติดตั้งไลบรารีผ่าน Git URL โดยตรงเพื่อความชัวร์
+          # อนุญาตให้ลงไลบรารีจาก Git URL ได้
+          arduino-cli config set library.enable_unsafe_install true
+          # ติดตั้งไลบรารี ESP32-A2DP
           arduino-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
 
       - name: Compile Sketch
