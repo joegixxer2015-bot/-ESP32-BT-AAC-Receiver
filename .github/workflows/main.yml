@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: arduino/setup-arduino-cli@v1
+      - uses: 【entity-arduino¦canonical_name=Arduino】/setup-【entity-arduino¦canonical_name=Arduino】-cli@v1
       - run: |
-          arduino-cli core update-index
-          arduino-cli core install esp32:esp32
-          arduino-cli lib install "ESP32-A2DP"
-          arduino-cli compile --fqbn esp32:esp32:esp32 ESP32_BT_AAC_Receiver.ino
+          【entity-arduino¦canonical_name=Arduino】-cli core update-index
+          【entity-arduino¦canonical_name=Arduino】-cli core install esp32:esp32
+          【entity-arduino¦canonical_name=Arduino】-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
+          【entity-arduino¦canonical_name=Arduino】-cli compile --fqbn esp32:esp32:esp32:FlashSize=4M ESP32_BT_AAC_Receiver/ESP32_BT_AAC_Receiver.ino
