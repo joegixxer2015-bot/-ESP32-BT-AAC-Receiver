@@ -1,19 +1,29 @@
 name: Check ESP32 BT Build
+
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Install CLI
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install ESP32 Core
         run: |
-          curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_0.35.3_Linux_64bit.tar.gz | tar -xz
-          sudo mv arduino-cli /usr/local/bin/
-          arduino-cli config init
-          arduino-cli config set library.enable_unsafe_install true
-      - name: Build
-        run: |
+          arduino-cli config init --additional-urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
           arduino-cli core update-index
           arduino-cli core install esp32:esp32
-          arduino-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
-          arduino-cli compile --fqbn esp32:esp32:esp32 ESP32_BT_AAC_Receiver
+
+      - name: Install Dependencies
+        run: |
+          # ติดตั้งไลบรารี ESP32-A2DP ของ Phil Schatzmann
+          arduino-cli lib install "ESP32 A2DP"
+
+      - name: Compile Sketch
+        run: |
+          # เปลี่ยนชื่อ "ESP32_BT_AAC_Receiver" ให้ตรงกับชื่อโฟลเดอร์โปรเจกต์จริงของคุณ
+          arduino-cli compile --fqbn esp32:esp32:esp32dev ESP32_BT_AAC_Receiver
