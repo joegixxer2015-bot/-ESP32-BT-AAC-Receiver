@@ -4,7 +4,6 @@
 BluetoothA2DPSink a2dp_sink;
 
 void setup() {
-  // กำหนดค่าพิน I2S สำหรับส่งออกสัญญาณเสียง
   i2s_pin_config_t my_pin_config = {
     .bck_io_num = 4,
     .ws_io_num = 5,
@@ -12,7 +11,9 @@ void setup() {
     .data_in_num = I2S_PIN_NO_CHANGE
   };
 
-  a2dp_sink.set_pin_config(my_pin_config);
+  // เปลี่ยนมาใช้ชื่อฟังก์ชันนี้แทนครับ
+  a2dp_sink.set_i2s_pins(my_pin_config);
+  
   a2dp_sink.start("JOE_DSP");
 }
 
