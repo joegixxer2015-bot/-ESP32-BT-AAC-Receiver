@@ -16,4 +16,6 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install esp32:esp32
           arduino-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
-          arduino-cli compile --fqbn esp32:esp32:esp32 ESP32_BT_AAC_Receiver/ESP32_BT_AAC_Receiver.ino
+          SKETCH=$(find . -name "*.ino" | head -n 1)
+          echo "Found sketch: $SKETCH"
+          arduino-cli compile --fqbn esp32:esp32:esp32 "$SKETCH"
