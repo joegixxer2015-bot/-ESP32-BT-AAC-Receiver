@@ -27,11 +27,12 @@ jobs:
       - name: Install Dependencies
         run: |
           arduino-cli config set library.enable_unsafe_install true
+          arduino-cli lib install --git-url https://github.com/pschatzmann/arduino-audio-tools.git
           arduino-cli lib install --git-url https://github.com/pschatzmann/ESP32-A2DP.git
 
       - name: Compile Sketch
         run: |
-          arduino-cli compile --fqbn esp32:esp32:esp32 --output-dir ./build ESP32_BT_AAC_Receiver
+          arduino-cli compile --fqbn esp32:esp32:esp32:PartitionScheme=huge_app --output-dir ./build ESP32_BT_AAC_Receiver
 
       - name: Upload Binary Artifact
         uses: actions/upload-artifact@v4
