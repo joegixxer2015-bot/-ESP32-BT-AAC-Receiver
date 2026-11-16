@@ -17,12 +17,12 @@ jobs:
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v2
 
-      - name: Install ESP32 Core
+      - name: Install ESP32 Core (ล็อกเวอร์ชัน v2.0.17)
         run: |
           arduino-cli config init
           arduino-cli config set board_manager.additional_urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
           arduino-cli core update-index
-          arduino-cli core install esp32:esp32
+          arduino-cli core install esp32:esp32@2.0.17
 
       - name: Install Dependencies
         run: |
