@@ -14,11 +14,11 @@ void setup() {
   cfg.pin_data = 22;   // DATA
   i2s.begin(cfg);
 
-  // เริ่มต้นบลูทูธ
+  // ปิด AAC เพื่อบังคับให้ iPhone ใช้ SBC (แก้ปัญหาเสียงสะดุกกระตุก)
+  a2dp_sink.set_is_aac_supported(false);
+
+  // เริ่มต้นบลูทูธ (ชื่ออุปกรณ์ที่มือถือจะค้นหา)
   a2dp_sink.start("JOE_DSP");
-  
-  // ตั้งค่าระดับเสียงเริ่มต้นเป็นสูงสุด (ป้องกันเสียงออกเป็น 0)
-  a2dp_sink.set_volume(100);
 }
 
 void loop() {
