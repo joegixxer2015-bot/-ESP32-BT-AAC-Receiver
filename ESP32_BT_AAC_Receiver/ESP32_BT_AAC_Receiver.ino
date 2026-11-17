@@ -11,13 +11,13 @@ void setup() {
   cfg.pin_bck = 26;
   cfg.pin_ws = 25;     // LRCK / WS
   cfg.pin_data = 22;   // DATA
-  
-  // เพิ่มขนาด Buffer ให้ใหญ่ขึ้น (จากค่าเริ่มต้น ช่วยซับแรงกระแทกตอน iPhone ส่งข้อมูล)
   cfg.buffer_size = 1024 * 8; 
+  
+  // เปิดใช้งาน I2S ฝั่งส่งออก (DevKit ทำหน้าที่เป็น Master จ่าย Clock อัตโนมัติ)
   i2s.begin(cfg);
 
-  // เริ่มต้นบลูทูธ
-  a2dp_sink.start("JOE_DSP");
+  // เริ่มต้นบลูทูธพร้อมส่ง config ที่ตั้งพินเข้าไป
+  a2dp_sink.start("JOE_DSP", cfg); 
 }
 
 void loop() {
