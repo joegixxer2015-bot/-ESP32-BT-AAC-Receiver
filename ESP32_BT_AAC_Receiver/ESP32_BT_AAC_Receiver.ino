@@ -14,12 +14,11 @@ void setup() {
   cfg.pin_data = 22;   // DATA
   i2s.begin(cfg);
 
-  // ตั้งโหมดให้ค้นหาชื่อเจอด้วยชื่อเมธอดที่ตรงกับคลาส BluetoothA2DPSink
-  a2dp_sink.set_discoverability(ESP_BT_SCAN_MODE_DISCOVERABLE);
-
-  // คอมเมนต์ clean_last_connection() เพื่อไม่ให้ลบลิงก์จับคู่ทุกครั้งที่เปิดบอร์ด
+  // ไม่เรียก set_discoverability เพราะค่าคงที่ ESP_BT_SCAN_MODE_DISCOVERABLE ไม่มีในชุดนี้
+  // เอา clean_last_connection() ออก เพื่อไม่ให้ลบลิงก์จับคู่ทุกครั้งที่รีบูต
   // a2dp_sink.clean_last_connection();
 
+  // เริ่มต้น A2DP Sink โดยเปิด Auto-Reconnect เป็น true
   a2dp_sink.start("JOE_DSP", true);
 
   Serial.println("Bluetooth JOE_DSP Ready!");
