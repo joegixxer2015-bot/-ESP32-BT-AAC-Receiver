@@ -14,16 +14,14 @@ void setup() {
   cfg.pin_data = 22;   // DATA
   i2s.begin(cfg);
 
-  // 1. บังคับเปิดโหมดให้มือถือค้นหาชื่อเจอ (Discoverable) และเปิดรับการเชื่อมต่อ
-  a2dp_sink.set_discoverable(true);
+  // ตั้งโหมดให้ค้นหาชื่อเจอด้วยชื่อเมธอดที่ตรงกับคลาส BluetoothA2DPSink
+  a2dp_sink.set_discoverability(ESP_BT_SCAN_MODE_DISCOVERABLE);
 
-  // 2. เอา clean_last_connection() ออก เพื่อไม่ให้ล้างกุญแจจับคู่ทิ้งทุกครั้งที่รีบูต
-  // (หากต้องการล้างค่าจริงๆ ค่อยเปิดใช้แค่ครั้งเดียวแล้วปิดกลับ)
+  // คอมเมนต์ clean_last_connection() เพื่อไม่ให้ลบลิงก์จับคู่ทุกครั้งที่เปิดบอร์ด
   // a2dp_sink.clean_last_connection();
 
-  // 3. เริ่มต้น A2DP Sink โดยเปิด Auto-Reconnect เป็น true เพื่อให้ต่อกลับอัตโนมัติได้
-  a2dp_sink.start("JOE_DSP", true); 
-  
+  a2dp_sink.start("JOE_DSP", true);
+
   Serial.println("Bluetooth JOE_DSP Ready!");
 }
 
