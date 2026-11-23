@@ -16,11 +16,10 @@ void setup() {
   cfg.pin_bck = 26;
   cfg.pin_ws = 25;     // LRCK / WS
   cfg.pin_data = 22;   // DATA
-  cfg.buffer_count = 8;
-  cfg.buffer_size = 512;
+  cfg.buffer_count = 12;
+  cfg.buffer_size = 1024;
   i2s.begin(cfg);
 
-  // เริ่มต้น A2DP Sink โดยเปิด Auto-Reconnect เป็น true
   a2dp_sink.start("JOE_DSP", true);
 
   Serial.println("Bluetooth JOE_DSP Ready!");
